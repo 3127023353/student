@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=xfhhaTThl11qYVrqLZii6w8qE5ggnhrY&__ec_v__=20190126"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+colors =  [
+        '#df6b66',
+        '#749aa0',
+        '#e79d88',
+        '#8cc1aa',
+        '#ec7e55',
+        '#72a375',
+        '#efdd7d',
+    ];
+option = {
+     tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                axis: 'x',
+                type: 'shadow',
+            },
+        },
+        grid: {
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: '8%',
+        },
+        xAxis : {
+            type : 'category',
+            axisLine: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+            data : ['性别', '住宿']
+        },
+        yAxis : {
+            show: false
+        },
+    series: [
+       {
+                type:'bar',
+                stack: '1',
+                itemStyle: {
+                    color: colors[1],
+                    barBorderRadius: [0,0,50,50]
+                },
+                label: {
+                    show: true,
+                    position: 'inside',
+                    formatter: (params)=>{
+                        if (params.value === 943) {
+                            return '男生';
+                        }
+                        if (params.value === 708) {
+                            return '住校';
+                        }
+                        if (params.value === 702) {
+                            return '高一';
+                        }
+                        return '错误';
+                    }
+                },
+                data:[943, 708, 702]
+            },
+             {
+                type:'bar',
+                stack: '1',
+                itemStyle: {
+                    color: colors[0],
+                    barBorderRadius: [50,50,0,0]
+                },
+                label: {
+                    show: true,
+                    position: 'inside',
+                    formatter: (params)=>{
+                        if (params.value === 822) {
+                            return '女生';
+                        }
+                        if (params.value === 1057) {
+                            return '走读';
+                        }
+                        if (params.value === 508) {
+                            return '高三';
+                        }
+                        return '错误';
+                    }
+                },
+                data:[822, 1057, 508]
+            },
+               {
+                type:'bar',
+                stack: '1',
+                itemStyle: {
+                    color: colors[3],
+                },
+                label: {
+                    show: true,
+                    position: 'inside',
+                    formatter: (params)=>{
+                        if (params.value === 555) {
+                            return '高二';
+                        } else {
+                            return '';
+                        }
+                    }
+                },
+                data:[NaN, NaN, 555]
+            },
+    ]
+};;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>
